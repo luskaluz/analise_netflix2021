@@ -88,10 +88,13 @@ pais_mais_series = paises_series_count.index[0] if not paises_series_count.empty
 qtd_series_pais_top = paises_series_count.iloc[0] if not paises_series_count.empty else 0
 
 # Gênero mais popular (apenas entre os gêneros informados)
-generos_filmes_count = df_movies_filtered[~df_movies_filtered['listed_in'].str.contains('International', na=False)]['listed_in'].str.split(', ').explode().dropna().value_counts()
+generos_filmes_count = df_movies_filtered[df_movies_filtered['listed_in'].notna()]['listed_in'].str.split(', ').explode().value_counts()
+# Excluir 'International' dos filmes
+generos_filmes_count = generos_filmes_count[~generos_filmes_count.index.str.contains('International', na=False)]
 genero_mais_popular_filmes = generos_filmes_count.index[0] if not generos_filmes_count.empty else "N/A"
 
-generos_series_count = df_tv_shows_filtered[~df_tv_shows_filtered['listed_in'].str.contains('International', na=False)]['listed_in'].str.split(', ').explode().dropna().value_counts()
+generos_series_count = df_tv_shows_filtered[df_tv_shows_filtered['listed_in'].notna()]['listed_in'].str.split(', ').explode().value_counts()
+generos_series_count = generos_series_count[~generos_series_count.index.str.contains('International TV Shows', na=False)]
 genero_mais_popular_series = generos_series_count.index[0] if not generos_series_count.empty else "N/A"
 
 # Layout das métricas em 4 colunas
@@ -123,13 +126,13 @@ with col_m2:
 
 with col_m3:
     st.metric(
-        label="🏆 País + Filmes",
+        label="🏆 País com + Filmes",
         value=pais_mais_filmes,
         delta=f"{qtd_filmes_pais_top} filmes",
         help="País com maior quantidade de filmes"
     )
     st.metric(
-        label="🏆 País + Séries",
+        label="🏆 País com + Séries",
         value=pais_mais_series,
         delta=f"{qtd_series_pais_top} séries",
         help="País com maior quantidade de séries"
@@ -137,14 +140,14 @@ with col_m3:
 
 with col_m4:
     st.metric(
-        label="🎭 Gênero + Popular (Filmes)",
+        label="🎭 Gênero + Popular entre Filmes",
         value=genero_mais_popular_filmes,
         help="Gênero mais popular entre filmes"
     )
     st.metric(
-        label="🎭 Gênero + Popular (Séries)",
+        label="🎭 Gênero + Popular entre Séries",
         value=genero_mais_popular_series,
-        help="Gênero mais popular entre séries"
+        help="Gênero mais popular entre séries excluindo o gênero Internacional"
     )
 
 st.divider()
