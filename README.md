@@ -1,6 +1,8 @@
 # Insights Obtidos a Partir dos Dados
 Esta é uma análise do dataset de títulos da Netflix, incluindo filmes e séries, até o ano de 2021.
 
+## Ferramentas utilizadas: Python, Pandas, NumPy, Matplotlib e Streamlit
+
 ## Distribuição geral
 O dataset contém 8.807 títulos, sendo 6.131 filmes (69,62%) e 2.676 séries de TV (30,38%). Algumas linhas registram 'Não Informado' para elenco ou diretor, indicando ausência de dados nessas colunas.
 A maioria dos títulos foi lançada entre os anos 1990 e 2019, com alguns registros isolados de anos anteriores. Por exemplo, 1925 possui apenas 1 título registrado.
