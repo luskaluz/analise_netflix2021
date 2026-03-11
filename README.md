@@ -31,4 +31,5 @@ Com a separação de gêneros únicos por cada filme e série, vemos que o Top 3
 
 Podemos ver que seguem uma linha parecida, mas com séries criminais tomando a frente, com documentários (docuseries) estando atrás de séries infantis.
 
-###Além da análise aqui no readme, fiz um dashboard abordando o total, 
+### Link para o Dashboard
+https://estudoanalysisnetflixluskaluz.streamlit.app/
